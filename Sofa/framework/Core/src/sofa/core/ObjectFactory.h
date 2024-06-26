@@ -348,7 +348,7 @@ public:
         }
 
         auto* objectCreator = new ObjectCreator<RealObject>;
-        if (objectCreator->getTarget() == "")
+        if (std::string(objectCreator->getTarget()) == "")
         {
             dmsg_warning("ObjectFactory") << "Module name cannot be found when registering "
                 << RealObject::GetClass()->className << "<" << RealObject::GetClass()->templateName << "> into the object factory";
