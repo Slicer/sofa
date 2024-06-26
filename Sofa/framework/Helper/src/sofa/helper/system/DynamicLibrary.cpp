@@ -28,7 +28,16 @@ using sofa::helper::system::FileSystem;
 # include <dlfcn.h>
 #endif
 #include <string>
-#include <filesystem>
+#if __has_include(<filesystem>)
+  #include <filesystem>
+#elif __has_include(<experimental/filesystem>)
+  #include <experimental/filesystem>
+  namespace std {
+      namespace filesystem = experimental::filesystem;
+  }
+#else
+  error "Missing the <filesystem> header."
+#endif
 #include <sstream>
 
 namespace sofa::helper::system
