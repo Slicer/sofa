@@ -75,7 +75,9 @@ sofa_find_package(Sofa.Config REQUIRED)
 
 ## Boost (1.54.0 or higher) is now mandatory.
 set(BOOST_MIN_VERSION "1.54.0")
-set(Boost_NO_BOOST_CMAKE TRUE)
+if(NOT DEFINED Boost_NO_BOOST_CMAKE)
+    set(Boost_NO_BOOST_CMAKE TRUE)
+endif()
 sofa_find_package(Boost ${BOOST_MIN_VERSION} QUIET)
 if(NOT Boost_FOUND)
     if(WIN32)
