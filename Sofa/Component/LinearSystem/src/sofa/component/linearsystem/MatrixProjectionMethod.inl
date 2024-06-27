@@ -258,7 +258,7 @@ std::vector<unsigned> MatrixProjectionMethod<TMatrix>::identifyAffectedDoFs(
         }
     }
 
-    return std::vector( setAffectedDoFs.begin(), setAffectedDoFs.end() );
+    return std::vector<unsigned>( setAffectedDoFs.begin(), setAffectedDoFs.end() );
 }
 
 template <class TMatrix>
