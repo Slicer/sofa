@@ -2377,8 +2377,9 @@ void MechanicalObject<DataTypes>::printDOF( core::ConstVecId v, std::ostream& ou
 {
     const unsigned int size=this->getSize();
     if ((unsigned int) (abs(firstIndex)) >= size) return;
-    const unsigned int first=((firstIndex>=0)?firstIndex:size+firstIndex);
-    const unsigned int max=( ( (range >= 0) && ( (range+first)<size) ) ? (range+first):size);
+    // Comment "const" to workaround "internal compiler error" reported using GCC 7.3.1.
+    /*const*/ unsigned int first=((firstIndex>=0)?firstIndex:size+firstIndex);
+    /*const*/ unsigned int max=( ( (range >= 0) && ( (range+first)<size) ) ? (range+first):size);
 
     const bool isApplied = applyPredicateIfCoordOrDeriv(v.type, [&](auto vtype)
     {
