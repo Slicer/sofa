@@ -766,10 +766,10 @@ function(sofa_set_project_install_relocatable project_name binary_dir install_di
     # Remove cmakepatch file at each configure
     file(REMOVE "${binary_dir}/cmake_install.cmakepatch")
 
-    set(custom_target ${project_name}_relocatable_install)
+    set(custom_target ${project_name}_relinst)
     get_filename_component(binary_dirname "${binary_dir}" NAME_WE)
     if(binary_dirname AND NOT "${binary_dirname}" STREQUAL "${project_name}")
-        set(custom_target ${project_name}_${binary_dirname}_relocatable_install)
+        set(custom_target ${project_name}_${binary_dirname}_relinst)
     endif()
 
     # Hack to make installed plugin independent and keep the add_subdirectory mechanism
@@ -809,7 +809,7 @@ function(sofa_set_project_install_relocatable project_name binary_dir install_di
                 || true
             )
     endif()
-    set_target_properties(${custom_target} PROPERTIES FOLDER "relocatable_install")
+    set_target_properties(${custom_target} PROPERTIES FOLDER "relinst")
 endfunction()
 
 
