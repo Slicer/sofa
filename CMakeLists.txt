@@ -236,7 +236,7 @@ endif()
 # Sofa.Component
 sofa_get_all_targets(all_targets)
 foreach(target ${all_targets})
-    if(target MATCHES "Sofa.Component.*" AND NOT target MATCHES ".*_relocatable_install")
+    if(target MATCHES "Sofa.Component.*" AND NOT target MATCHES ".*_relinst")
         set_target_properties(${target} PROPERTIES FOLDER Sofa.Component) # IDE folder
     endif()
 endforeach()
