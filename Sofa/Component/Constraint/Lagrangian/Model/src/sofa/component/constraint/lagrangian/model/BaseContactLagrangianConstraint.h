@@ -30,7 +30,6 @@
 #include <map>
 #include <deque>
 #include <type_traits>
-#include <concepts>
 
 namespace sofa::component::constraint::lagrangian::model
 {
