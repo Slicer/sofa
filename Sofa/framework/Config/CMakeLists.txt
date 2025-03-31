@@ -11,6 +11,11 @@ include(SofaMacros)
 set_property(GLOBAL PROPERTY __GlobalTargetList__ "")
 set_property(GLOBAL PROPERTY __GlobalTargetNameList__ "")
 
+# Installation directories for relocatable plugins/collections/projects
+set(SOFA_PLUGINS_RELOCATABLE_INSTALL_DIR "plugins" CACHE STRING "Relocatable diretory for plugins")
+set(SOFA_COLLECTIONS_RELOCATABLE_INSTALL_DIR "collections" CACHE STRING "Relocatable diretory for collections")
+set(SOFA_PROJECTS_RELOCATABLE_INSTALL_DIR "projects" CACHE STRING "Relocatable diretory for projects")
+
 # Help RELOCATABLE plugins to resolve their dependencies.
 # See SofaMacrosInstall.cmake for usage of this property.
 define_property(TARGET
