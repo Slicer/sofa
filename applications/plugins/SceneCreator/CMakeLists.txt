@@ -33,7 +33,7 @@ sofa_create_package_with_targets(
     TARGETS ${PROJECT_NAME} AUTO_SET_TARGET_PROPERTIES
     INCLUDE_SOURCE_DIR "src"
     INCLUDE_INSTALL_DIR "SceneCreator"
-    RELOCATABLE "plugins"
+    RELOCATABLE ${SOFA_PLUGINS_RELOCATABLE_INSTALL_DIR}
     )
 
 ## Add example project to use sceneCreator
