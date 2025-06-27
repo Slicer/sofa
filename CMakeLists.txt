@@ -114,7 +114,9 @@ if(UNIX)
         )
 
     if(APPLE)
-        set(CMAKE_MACOSX_RPATH ON)
+        if(NOT DEFINED CMAKE_MACOSX_RPATH)
+            set(CMAKE_MACOSX_RPATH ON)
+        endif()
         list(APPEND CMAKE_INSTALL_RPATH
             "@loader_path/../lib"
             "@executable_path/../lib"
