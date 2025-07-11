@@ -48,7 +48,16 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <filesystem>
+#if __has_include(<filesystem>)
+  #include <filesystem>
+#elif __has_include(<experimental/filesystem>)
+  #include <experimental/filesystem>
+  namespace std {
+      namespace filesystem = experimental::filesystem;
+  }
+#else
+  error "Missing the <filesystem> header."
+#endif
 
 #include <sofa/helper/logging/Messaging.h>
 
@@ -257,19 +266,19 @@ const std::string& Utils::getUserLocalDirectory()
 
 #elif defined(__APPLE__) // macOS : ${HOME}/Library/Application Support
         // https://stackoverflow.com/questions/5123361/finding-library-application-support-from-c
-        
+
         char path[PATH_MAX];
         auto state = sysdir_start_search_path_enumeration(SYSDIR_DIRECTORY_APPLICATION_SUPPORT,
                                                           SYSDIR_DOMAIN_MASK_USER);
         if ((state = sysdir_get_next_search_path_enumeration(state, path)))
         {
             glob_t globbuf;
-            if (glob(path, GLOB_TILDE, nullptr, &globbuf) == 0) 
+            if (glob(path, GLOB_TILDE, nullptr, &globbuf) == 0)
             {
                 std::string result(globbuf.gl_pathv[0]);
                 globfree(&globbuf);
                 return result;
-            } 
+            }
             else
             {
                 // "Unable to expand tilde"
@@ -281,7 +290,7 @@ const std::string& Utils::getUserLocalDirectory()
             // "Failed to get settings folder"
             return std::string("");
         }
-        
+
 #else // Linux: either ${XDG_CONFIG_HOME} if defined, or ${HOME}/.config (should be equivalent)
         const char* configDir;
 
@@ -323,5 +332,3 @@ const std::string& Utils::getSofaUserLocalDirectory()
 
 
 } // namespace sofa::helper
-
-
